@@ -6,9 +6,6 @@ const sqlite = require("sqlite3").verbose();
 
 const fs = require('fs');
  
-client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-
 function sleep(milliseconds) {
     const date = Date.now();
     let currentDate = null;
@@ -16,11 +13,6 @@ function sleep(milliseconds) {
       currentDate = Date.now();
     } while (currentDate - date < milliseconds);
   }
-
-for(const file of commandFiles){
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.name, command);
-}
 
 client.on(`ready`, () => {
     console.log("Online");
