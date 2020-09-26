@@ -43,9 +43,7 @@ client.on(`message`, (message) => {
     let userid = message.author.id;
     let uname = message.author.tag;
 
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
-
-    if(!client.commands.has(command)) return;
+    if (!message.content.startsWith(prefix) || message.author.bot || !client.commands.has(command)) return;
 
     try {
         client.commands.get(command).execute(message, db, query, userid, uname);
